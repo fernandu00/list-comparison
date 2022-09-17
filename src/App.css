@@ -2,7 +2,10 @@
   --darkest-blue: #022c43;
   --dark-blue: #053f5e;
   --blue: #115173;
-  --yellow: #ffd700;
+  --yellow: #ffde03;
+  --primary: #0336ff;
+  --gray: #fafafa;
+  --red: #ff0266;
 }
 body {
   font-family: "Lato", sans-serif;
@@ -11,29 +14,45 @@ body {
 .App {
   text-align: center;
   display: grid;
-  justify-content: center;
-  background-color: var(--darkest-blue);
+  place-items: center;
+  background-color: var(--primary);
   width: 100vw;
   height: 100vh;
 }
 
 .list-main {
-  background-color: var(--darkest-blue);
-  min-height: 40vh;
-  min-width: 30vw;
+  background-color: var(--gray);
+  min-width: 60vw;
+  height: 80%;
   margin: 2rem;
   font-size: 1.5rem;
+  border-radius: 0.4rem;
 }
 
-.list-main .container {
+.title {
+  font-size: 4rem;
+  color: #222;
+  text-transform: capitalize;
+}
+
+.container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  color: var(--yellow);
-  gap: 2rem;
+
+  color: #222;
+  column-gap: 4rem;
+
+  font-size: 1.25rem;
 }
 .title {
   grid-column: 1/3;
 }
+
+.element {
+  background-color: #fafafa;
+  border-radius: 0.4rem;
+}
+
 input {
   font-size: 1.5rem;
 }
@@ -42,49 +61,166 @@ input[type="file"] {
   display: none;
 }
 
-label {
+.custom-label {
   background-color: var(--yellow);
   cursor: pointer;
-  margin: 1rem;
+  margin-top: 2rem;
   border: transparent;
   border-radius: 0.5rem;
   padding: 1rem;
   color: var(--blue);
   font-weight: bold;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
-label:hover {
-  background-color: #ffe867;
+.custom-label:hover,
+.download-link:hover {
+  background-color: #dabc15;
 }
 
 .compare {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .compare button {
   cursor: pointer;
-  font-size: 1.5rem;
+
+  font-size: 1rem;
+  font-weight: bold;
   text-transform: uppercase;
   color: var(--yellow);
   margin: 1rem;
-  border: 1px solid var(--yellow);
-  border-radius: 0.2rem;
+  border: transparent;
+  border-radius: 0.4rem;
   padding: 1rem;
-  background-color: #053f5e;
+  background-color: var(--red);
+  transition: all 0.3s linear;
+}
+
+.compare p {
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 .apagados {
-  color: #ffd700;
+  color: #222;
+  font-size: 1rem;
 }
 
 .download-link {
   width: 10rem;
   font-size: 1.25rem;
   padding: 1rem;
-  background-color: #ffd700;
+  background-color: var(--yellow);
   text-transform: uppercase;
+  border: transparent;
+  border-radius: 0.4rem;
   font-weight: bold;
   color: #053f5e;
   font-family: "Lato";
   cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.compare button:hover {
+  background-color: rgba(255, 2, 102, 0.85);
+}
+
+/* Login styles */
+
+.section-center {
+  display: grid;
+  place-items: center;
+  width: 99.9vw;
+  height: 99.5vh;
+  background: var(--primary);
+
+  /* animation: bg-animation 5s infinite alternate; */
+}
+@keyframes bg-animation {
+  0% {
+    background-position: bottom left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.login {
+  padding: 2rem;
+  margin: 2rem;
+  max-width: 50vw;
+  min-height: 40vh;
+  font-size: 1.5rem;
+  background-color: var(--gray);
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 4px 0px 30px 4px rgba(148, 148, 148, 0.59);
+  border-radius: 0.5rem;
+  color: #222;
+  text-transform: capitalize;
+}
+
+.form {
+  padding: 2rem;
+  margin: 2rem;
+  max-width: 15vw;
+  height: 20vh;
+  font-size: 1.5rem;
+  background-color: #005118;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  color: #ccc;
+  text-transform: capitalize;
+}
+
+.login-input {
+  padding: 0.75rem;
+  margin: 1rem 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.3rem;
+}
+
+.login-label {
+  font-size: 1.5rem;
+  margin: 0.25rem;
+}
+.login-btn {
+  padding: 1rem;
+  margin: 2rem 1rem;
+  max-width: 10vw;
+  background-color: #ff0266;
+  color: #fafafa;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border: transparent;
+  align-self: center;
+  -webkit-box-shadow: 4px 0px 22px -14px rgba(148, 148, 148, 0.59);
+}
+
+.error {
+  color: #ff0000;
+  text-transform: lowercase;
+  font-size: 1.2rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+@media screen and (min-width: 375px) {
+  .login {
+    padding: 2rem;
+    margin: 2rem;
+    max-width: 70vw;
+  }
+
+  .login-btn {
+    padding: 1rem;
+    margin: 2rem 1rem;
+    max-width: 25vw;
+  }
 }

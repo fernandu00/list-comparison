@@ -1,9 +1,18 @@
 import { parse } from "papaparse";
 import React, { useState } from "react";
-import _, { includes } from "lodash";
-import { CSVDownload, CSVLink } from "react-csv";
+import { UserContext } from "../App";
+import { CSVLink } from "react-csv";
+import { useContext } from "react";
+import {
+  FaSistrix,
+  FaArrowCircleDown,
+  FaExchangeAlt,
+  FaRegFileAlt,
+  FaRegFileCode,
+} from "react-icons/fa";
 
 const ListComparison = () => {
+  const { isAuth, username, setUsername } = useContext(UserContext);
   const [list, setList] = useState([]);
   const [blackList, setBlackList] = useState([]);
   const [cleanList, setCleanList] = useState([]);
@@ -78,19 +87,20 @@ const ListComparison = () => {
   };
   return (
     <main className="list-main">
+      <h1 className="title">Limpa listas</h1>
       <div className="container">
-        <h1 className="title">Limpa listas</h1>
-        <div>
-          <h2>Escolha o arquivo desejado</h2>
+        <article className="element">
+          <h2>Lista de contatos</h2>
           <label className="custom-label" htmlFor="list">
-            Lista de contatos
+            <FaRegFileAlt />
+            Contatos
           </label>
           <input onChange={handleList} name="list" id="list" type="file" />
-        </div>
-        <div>
-          <h2>Escolha o arquivo a ser filtrado</h2>
+        </article>
+        <article className="element">
+          <h2>Lista Não perturbe</h2>
           <label className="custom-label" htmlFor="blacklist">
-            Lista Negra
+            <FaRegFileCode /> Blacklist
           </label>
           <input
             onChange={handleBlackList}
@@ -98,10 +108,12 @@ const ListComparison = () => {
             id="blacklist"
             type="file"
           />
-        </div>
+        </article>
       </div>
       <div className="compare">
-        <button onClick={compareLists}>compare as listas</button>
+        <button onClick={compareLists}>
+          <FaExchangeAlt /> compare
+        </button>
       </div>
       <div>
         {finalResult.length > 0 && (
@@ -111,8 +123,15 @@ const ListComparison = () => {
         )}
 
         <div>
-          <CSVLink data={finalResult} target="_blank">
-            <button className="download-link">download</button>
+          <CSVLink
+            data={finalResult}
+            filename={"lista_limpa.csv"}
+            target="_blank"
+          >
+            <button className="download-link">
+              download
+              <FaArrowCircleDown />
+            </button>
           </CSVLink>
         </div>
       </div>
